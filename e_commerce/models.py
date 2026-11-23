@@ -11,7 +11,6 @@ class Categoria(models.Model):
     atualizado_em = models.DateTimeField(auto_now=True)
 
 
-
 class Produto(models.Model):
     nome = models.CharField(null=False, blank=False, max_length=255)
     descricao = models.TextField(max_length=1000, blank=True)
