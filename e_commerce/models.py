@@ -19,7 +19,7 @@ class Produto(models.Model):
     descricao = models.TextField(max_length=1000, blank=True)
     preco = models.DecimalField(null=False, blank=False, validators=[MinValueValidator(Decimal("0.01"))], decimal_places=2, max_digits=10)
     quantidade_estoque = models.PositiveIntegerField(null=False, blank=False)
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, null=False, blank=False)
+    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, null=False, blank=False)
     imagem = models.URLField(blank=True)
     criado_em = models.DateTimeField(auto_now_add=True)
     atualizado_em = models.DateTimeField(auto_now=True)
