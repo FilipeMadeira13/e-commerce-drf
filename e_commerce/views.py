@@ -7,12 +7,12 @@ from e_commerce.serializers import CategoriaSerializer, ProdutoSerializer
 
 class CategoriaViewSet(viewsets.ModelViewSet):
     serializer_class = CategoriaSerializer
-    queryset = Categoria.objects.all()
+    queryset = Categoria.objects.order_by("id")
 
 
 class ProdutoViewSet(viewsets.ModelViewSet):
     serializer_class = ProdutoSerializer
-    queryset = Produto.objects.select_related("categoria")
+    queryset = Produto.objects.select_related("categoria").order_by("id")
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = {
         "categoria": ["exact"],
