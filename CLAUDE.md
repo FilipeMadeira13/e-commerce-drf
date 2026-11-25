@@ -15,6 +15,7 @@ Requer `.env` na raiz com `DJANGO_SECRET_KEY` (sem ele o settings quebra com `Ke
 - `setup/`: projeto Django (settings, urls). Rotas via `DefaultRouter` na raiz, **sem prefixo `/api/`**.
 - `e_commerce/`: app único. Fluxo `models.py` → `serializers.py` (ModelSerializer) → `views.py` (ModelViewSet).
 - Política da API (auth, permissão, paginação, throttling) é **global** em `REST_FRAMEWORK` no settings. Ver [docs/decisoes/](docs/decisoes/).
+- Docs OpenAPI (drf-yasg) geradas dos ViewSets/serializers em `/swagger/` e `/redoc/` (`setup/urls.py`). Use `help_text` nos campos para documentar.
 - Banco: SQLite (`db.sqlite3`).
 
 ## Convenções
@@ -27,4 +28,5 @@ Requer `.env` na raiz com `DJANGO_SECRET_KEY` (sem ele o settings quebra com `Ke
 ## Regras
 - Nunca commitar `.env` nem `db.sqlite3`.
 - Throttle global: anônimo 20/dia, autenticado 50/dia. Testes manuais esgotam isso rápido.
+  Inclui `/swagger/` e `/redoc/` (cada abertura do Swagger conta 2 requisições).
 - Não sobrescrever auth/permissão/paginação por view sem registrar um ADR.

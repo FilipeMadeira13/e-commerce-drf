@@ -4,7 +4,7 @@ API REST em Django + Django REST Framework para gerenciar **categorias** e **pro
 
 ## Requisitos
 - Python 3.13
-- Dependências em [requirements.txt](requirements.txt) (Django 6.1, DRF 3.18, django-filter, python-dotenv)
+- Dependências em [requirements.txt](requirements.txt) (Django 6.1, DRF 3.18, django-filter, drf-yasg, python-dotenv)
 
 ## Instalação
 ```bash
@@ -28,6 +28,8 @@ python manage.py runserver
 | `/categorias/{id}/` | GET, PUT, PATCH, DELETE | Detalhe de categoria |
 | `/produtos/` | GET, POST | Lista / cria produtos |
 | `/produtos/{id}/` | GET, PUT, PATCH, DELETE | Detalhe de produto |
+| `/swagger/` | GET | Documentação interativa (Swagger UI). Schema JSON em `/swagger/?format=openapi` |
+| `/redoc/` | GET | Documentação da API (ReDoc) |
 | `/admin/` | - | Django Admin (models ainda não registrados) |
 
 > Uma categoria que possui produtos **não pode ser excluída**: a API responde `409 Conflict`. Exclua os produtos ou mova-os para outra categoria antes. Ver [ADR 0004](docs/decisoes/0004-exclusao-categoria-cascade.md).
@@ -50,7 +52,7 @@ curl -u admin:senha -X POST http://127.0.0.1:8000/categorias/ \
 - **Autenticação:** Session ou HTTP Basic.
 - **Permissão:** leitura pública; criar, editar e excluir exigem login.
 - **Paginação:** 20 itens por página (`count`, `next`, `previous`, `results`).
-- **Limite de requisições:** anônimo 20/dia, autenticado 50/dia (HTTP 429 ao exceder).
+- **Limite de requisições:** anônimo 20/dia, autenticado 50/dia (HTTP 429 ao exceder). Vale também para `/swagger/` e `/redoc/`.
 - **Datas:** `criado_em`/`atualizado_em` no formato `dd/mm/aaaa às HH:MM` (horário `America/Fortaleza`).
 
 ## Testes
@@ -59,5 +61,6 @@ python manage.py test
 ```
 
 ## Documentação
+- Documentação interativa da API: `/swagger/` e `/redoc/` (com o servidor rodando)
 - [CHANGELOG.md](CHANGELOG.md)
 - [Decisões de arquitetura (ADRs)](docs/decisoes/)
