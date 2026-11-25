@@ -6,6 +6,7 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e
 ## [Unreleased]
 
 ### Added
+- Docstrings nos ViewSets `CategoriaViewSet` e `ProdutoViewSet`, com seções por ação (`list`, `create`, etc.) que viram resumo e descrição de cada operação no Swagger/ReDoc.
 - Documentação interativa da API com drf-yasg: Swagger UI em `/swagger/` e ReDoc em `/redoc/` (ADR 0005, `f5c9c00`).
 - Projeto Django (`setup/`) e app `e_commerce` com os models `Categoria` e `Produto`. `SECRET_KEY` lida do `.env` (`bcd847e`).
 - API REST com CRUD de categorias (`/categorias/`) e produtos (`/produtos/`) via DRF (`94508ce`).
