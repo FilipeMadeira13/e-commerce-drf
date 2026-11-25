@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "e_commerce.apps.ECommerceConfig",
     "rest_framework",
     "django_filters",
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
